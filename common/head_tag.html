@@ -1,0 +1,47 @@
+<script type="text/discourse-plugin" version="0.8">
+  const currentUser = api.getCurrentUser();
+
+  api.registerTopicFooterButton({
+    id: "discourse-topic-group-button",
+    priority: 0,
+    icon() {
+      if (settings.topic_group_button_icon.length) {
+        return settings.topic_group_button_icon;
+      }
+    },
+    translatedLabel() {
+      return settings.topic_group_button_title;
+    },
+    translatedTitle() {
+      return settings.topic_group_button_label;
+    },
+    action() {
+      const topicButtonUrl = settings.topic_group_button_url;
+      const url = topicButtonUrl
+        .replace("<TOPIC_ID>", this.get("topic.id"))
+        .replace("<USER_ID>", currentUser.id)
+        .replace("<USERNAME>", currentUser.username);
+
+      window.open(url, "_blank");
+    },
+    dropdown() {
+      return this.site.mobileView;
+    },
+    classNames: ["discourse-topic-group-button"],
+    dependentKeys: ["topic.id"],
+    displayed() {
+      if (!settings.topic_group_button_enabled) {
+        return false;
+      }
+
+      if (currentUser.staff) {
+        return true;
+      }
+
+      const userGroups = (currentUser.groups || []).map(g => g.name.toLowerCase());
+      const allowedGroup = settings.topic_group_button_allowed_group.toLowerCase();
+
+      return userGroups.includes(allowedGroup);
+    }
+  });
+</script>
