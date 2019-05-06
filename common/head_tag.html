@@ -20,7 +20,9 @@
       const url = topicButtonUrl
         .replace("<TOPIC_ID>", this.get("topic.id"))
         .replace("<USER_ID>", currentUser.id)
-        .replace("<USERNAME>", currentUser.username);
+        .replace("<USERNAME>", currentUser.username)
+        .replace("<TOPIC_TITLE>", this.get("topic.title"))
+        .replace("<TOPIC_SLUG>", this.get("topic.slug"));
 
       window.open(url, "_blank");
     },
@@ -28,7 +30,7 @@
       return this.site.mobileView;
     },
     classNames: ["discourse-topic-group-button"],
-    dependentKeys: ["topic.id"],
+    dependentKeys: ["topic.id", "topic.slug", "topic.title"],
     displayed() {
       if (!settings.topic_group_button_enabled) {
         return false;
