@@ -1,5 +1,6 @@
 {
   "name": "discourse-topic-group-button-component",
   "about_url": "https://github.com/discourse/discourse-topic-group-button-component",
-  "license_url": "https://github.com/discourse/discourse-topic-group-button-component/blob/master/LICENSE"
+  "license_url": "https://github.com/discourse/discourse-topic-group-button-component/blob/main/LICENSE",
+  "component": true
 }
