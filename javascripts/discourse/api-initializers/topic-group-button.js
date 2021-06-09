@@ -1,4 +1,6 @@
-<script type="text/discourse-plugin" version="0.8">
+import { apiInitializer } from "discourse/lib/api";
+
+export default apiInitializer("0.11.1", (api) => {
   const currentUser = api.getCurrentUser();
 
   api.registerTopicFooterButton({
@@ -10,10 +12,10 @@
       }
     },
     translatedLabel() {
-      return settings.topic_group_button_title;
+      return settings.topic_group_button_label;
     },
     translatedTitle() {
-      return settings.topic_group_button_label;
+      return settings.topic_group_button_title;
     },
     action() {
       const topicButtonUrl = settings.topic_group_button_url;
@@ -40,10 +42,12 @@
         return true;
       }
 
-      const userGroups = (currentUser.groups || []).map(g => g.name.toLowerCase());
+      const userGroups = (currentUser.groups || []).map((g) =>
+        g.name.toLowerCase()
+      );
       const allowedGroup = settings.topic_group_button_allowed_group.toLowerCase();
 
       return userGroups.includes(allowedGroup);
-    }
+    },
   });
-</script>
+});
