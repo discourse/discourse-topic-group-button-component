@@ -45,7 +45,8 @@ export default apiInitializer("0.11.1", (api) => {
       const userGroups = (currentUser.groups || []).map((g) =>
         g.name.toLowerCase()
       );
-      const allowedGroup = settings.topic_group_button_allowed_group.toLowerCase();
+      const allowedGroup =
+        settings.topic_group_button_allowed_group.toLowerCase();
 
       return userGroups.includes(allowedGroup);
     },
