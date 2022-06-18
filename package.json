@@ -1,7 +1,10 @@
 {
-  "author": "jjaffeux",
+  "name": "discourse-topic-group-button-component",
+  "version": "1.0.0",
+  "repository": "https://github.com/discourse/discourse-topic-group-button-component",
+  "author": "Discourse",
   "license": "MIT",
   "devDependencies": {
-    "eslint-config-discourse": "latest"
+    "eslint-config-discourse": "^3.2.0"
   }
 }
